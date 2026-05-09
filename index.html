@@ -1,0 +1,1039 @@
+<!doctype html>
+<html lang="ar" dir="rtl" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الحقيبة التدريبية - المعسكر السيبراني 2026</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&amp;display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Tajawal', sans-serif; }
+    html, body { height: 100%; margin: 0; }
+    
+    :root {
+      --neon-blue: #00d4ff;
+      --neon-purple: #a855f7;
+      --dark-bg: #0a0e1a;
+      --card-bg: #111827;
+      --card-border: #1e293b;
+    }
+
+    body {
+      background: var(--dark-bg);
+      color: #e2e8f0;
+    }
+
+    .neon-text {
+      text-shadow: 0 0 10px rgba(0, 212, 255, 0.5), 0 0 20px rgba(0, 212, 255, 0.3);
+    }
+
+    .neon-purple-text {
+      text-shadow: 0 0 10px rgba(168, 85, 247, 0.5), 0 0 20px rgba(168, 85, 247, 0.3);
+    }
+
+    .cyber-card {
+      background: linear-gradient(135deg, #111827 0%, #1a1f35 100%);
+      border: 1px solid #1e293b;
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .cyber-card:hover {
+      border-color: #00d4ff44;
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.1), 0 4px 20px rgba(0,0,0,0.3);
+      transform: translateY(-2px);
+    }
+
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #00d4ff, #a855f7);
+      z-index: 9999;
+      transition: width 0.1s linear;
+    }
+
+    .nav-fixed {
+      backdrop-filter: blur(20px);
+      background: rgba(10, 14, 26, 0.85);
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #00d4ff, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-bg {
+      background: radial-gradient(ellipse at 50% 0%, rgba(0, 212, 255, 0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 50%, rgba(168, 85, 247, 0.06) 0%, transparent 40%);
+    }
+
+    .timeline-line {
+      position: absolute;
+      right: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, #00d4ff, #a855f7);
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .accordion-content.open {
+      max-height: 2000px;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .info-box {
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(168, 85, 247, 0.05));
+      border-right: 4px solid #00d4ff;
+      border-radius: 8px;
+      padding: 16px 20px;
+    }
+
+    .warning-box {
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(251, 191, 36, 0.03));
+      border-right: 4px solid #fbbf24;
+      border-radius: 8px;
+      padding: 16px 20px;
+    }
+
+    .attack-card {
+      background: linear-gradient(135deg, #1a1f35, #111827);
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.3s;
+    }
+
+    .attack-card:hover {
+      border-color: #a855f766;
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.1);
+    }
+
+    .cyber-grid {
+      background-image: 
+        linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 5px rgba(0, 212, 255, 0.3); }
+      50% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.6); }
+    }
+
+    .pulse-glow { animation: pulse-glow 3s infinite; }
+
+    .nav-link {
+      position: relative;
+      transition: color 0.3s;
+    }
+    .nav-link:hover { color: #00d4ff; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      right: 0;
+      width: 0;
+      height: 2px;
+      background: #00d4ff;
+      transition: width 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #1e293b, #00d4ff33, #1e293b, transparent);
+      margin: 60px 0;
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .nav-fixed, .progress-bar { display: none; }
+      .cyber-card { border: 1px solid #ccc; background: #f9f9f9; }
+    }
+
+    .scroll-smooth { scroll-behavior: smooth; }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cyber: { blue: '#00d4ff', purple: '#a855f7', dark: '#0a0e1a', card: '#111827' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full overflow-auto scroll-smooth cyber-grid"><!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar" style="width: 0%"></div><!-- Navigation -->
+  <nav class="nav-fixed fixed top-0 right-0 left-0 z-50 px-4 py-3">
+   <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <div class="flex items-center gap-3">
+     <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyber-blue to-cyber-purple flex items-center justify-center pulse-glow"><i data-lucide="shield-check" class="w-5 h-5 text-white"></i>
+     </div><span class="font-bold text-lg gradient-text hidden sm:block" id="navTitle">المعسكر السيبراني</span>
+    </div>
+    <div class="hidden md:flex items-center gap-6 text-sm"><a href="#intro" class="nav-link text-gray-300">المقدمة</a> <a href="#session1" class="nav-link text-gray-300">الجلسة الأولى</a> <a href="#session2" class="nav-link text-gray-300">الجلسة الثانية</a> <a href="#activities" class="nav-link text-gray-300">الأنشطة</a> <a href="#outcomes" class="nav-link text-gray-300">المخرجات</a>
+    </div><button id="mobileMenuBtn" class="md:hidden text-gray-300 p-2"> <i data-lucide="menu" class="w-6 h-6"></i> </button>
+   </div><!-- Mobile Menu -->
+   <div id="mobileMenu" class="hidden md:hidden mt-3 pb-3 border-t border-gray-700 pt-3 flex flex-col gap-3 text-sm"><a href="#intro" class="text-gray-300 hover:text-cyber-blue transition">المقدمة</a> <a href="#session1" class="text-gray-300 hover:text-cyber-blue transition">الجلسة الأولى</a> <a href="#session2" class="text-gray-300 hover:text-cyber-blue transition">الجلسة الثانية</a> <a href="#activities" class="text-gray-300 hover:text-cyber-blue transition">الأنشطة</a> <a href="#outcomes" class="text-gray-300 hover:text-cyber-blue transition">المخرجات</a>
+   </div>
+  </nav><!-- Hero Section -->
+  <section class="hero-bg pt-32 pb-20 px-4" id="hero">
+   <div class="max-w-5xl mx-auto text-center fade-in">
+    <div class="inline-flex items-center gap-2 bg-cyber-blue/10 border border-cyber-blue/30 rounded-full px-4 py-2 mb-6 text-sm text-cyber-blue"><i data-lucide="calendar" class="w-4 h-4"></i> <span>اليوم الأول - المعسكر السيبراني 2026</span>
+    </div>
+    <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight" id="heroTitle"><span class="gradient-text">الحقيبة التدريبية</span><br><span class="text-white">للمعسكر السيبراني الصيفي للموهوبين</span></h1>
+    <p class="text-xl text-gray-400 mb-4" id="heroDesc">المعسكر تابع لتعليم جدة - قسم الموهوبين</p>
+    <div class="mt-8 cyber-card inline-block px-8 py-4">
+     <p class="text-gray-400 text-sm mb-2">إعداد وتقديم</p>
+     <div class="flex flex-wrap justify-center gap-4 text-sm"><span class="bg-cyber-blue/10 text-cyber-blue px-3 py-1 rounded-full">سعود سعد العتيبي</span> <span class="bg-cyber-purple/10 text-cyber-purple px-3 py-1 rounded-full">أ. فاطمه محمد الزبيدي</span> <span class="bg-cyber-blue/10 text-cyber-blue px-3 py-1 rounded-full">أ. محمد ساطي الظاهري</span>
+     </div>
+    </div>
+    <div class="mt-10 flex flex-wrap justify-center gap-6">
+     <div class="text-center">
+      <div class="text-3xl font-bold text-cyber-blue" id="counterDays">
+       0
+      </div>
+      <div class="text-xs text-gray-500">
+       يوم للمعسكر
+      </div>
+     </div>
+     <div class="text-center">
+      <div class="text-3xl font-bold text-cyber-purple">
+       2
+      </div>
+      <div class="text-xs text-gray-500">
+       جلسات تدريبية
+      </div>
+     </div>
+     <div class="text-center">
+      <div class="text-3xl font-bold text-cyber-blue">
+       10+
+      </div>
+      <div class="text-xs text-gray-500">
+       مهارة مكتسبة
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <div class="section-divider"></div><!-- Day Introduction -->
+  <section id="intro" class="px-4 py-16 max-w-6xl mx-auto fade-in">
+   <div class="text-center mb-12">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4 neon-text text-cyber-blue">اليوم الأول</h2>
+    <p class="text-xl text-gray-300">مقدمة الأمن السيبراني والهكر الأخلاقي</p>
+   </div>
+   <div class="grid md:grid-cols-2 gap-6">
+    <div class="cyber-card p-6">
+     <div class="flex items-center gap-3 mb-4">
+      <div class="w-10 h-10 rounded-lg bg-cyber-blue/20 flex items-center justify-center"><i data-lucide="target" class="w-5 h-5 text-cyber-blue"></i>
+      </div>
+      <h3 class="text-lg font-bold text-white">أهداف اليوم</h3>
+     </div>
+     <ul class="space-y-3 text-gray-300 text-sm">
+      <li class="flex items-start gap-2"><span class="text-cyber-blue mt-1">●</span> فهم أساسيات الأمن السيبراني وأهميته في العصر الرقمي</li>
+      <li class="flex items-start gap-2"><span class="text-cyber-blue mt-1">●</span> التعرف على أنواع التهديدات والهجمات السيبرانية</li>
+      <li class="flex items-start gap-2"><span class="text-cyber-blue mt-1">●</span> فهم عقلية المهاجم ومراحل الهجوم</li>
+      <li class="flex items-start gap-2"><span class="text-cyber-blue mt-1">●</span> التمييز بين أنواع الهاكرز المختلفة</li>
+      <li class="flex items-start gap-2"><span class="text-cyber-blue mt-1">●</span> تطبيق التفكير النقدي في تحليل السيناريوهات</li>
+     </ul>
+    </div>
+    <div class="cyber-card p-6">
+     <div class="flex items-center gap-3 mb-4">
+      <div class="w-10 h-10 rounded-lg bg-cyber-purple/20 flex items-center justify-center"><i data-lucide="award" class="w-5 h-5 text-cyber-purple"></i>
+      </div>
+      <h3 class="text-lg font-bold text-white">المهارات المكتسبة</h3>
+     </div>
+     <ul class="space-y-3 text-gray-300 text-sm">
+      <li class="flex items-start gap-2"><span class="text-cyber-purple mt-1">◆</span> تحليل المخاطر السيبرانية</li>
+      <li class="flex items-start gap-2"><span class="text-cyber-purple mt-1">◆</span> التعرف على أساليب التصيد الاحتيالي</li>
+      <li class="flex items-start gap-2"><span class="text-cyber-purple mt-1">◆</span> فهم آليات عمل البرمجيات الخبيثة</li>
+      <li class="flex items-start gap-2"><span class="text-cyber-purple mt-1">◆</span> تحليل سيناريوهات الاختراق</li>
+      <li class="flex items-start gap-2"><span class="text-cyber-purple mt-1">◆</span> تطبيق مبادئ الحماية الأساسية</li>
+      <li class="flex items-start gap-2"><span class="text-cyber-purple mt-1">◆</span> التفكير كمختبر اختراق أخلاقي</li>
+     </ul>
+    </div>
+   </div>
+   <div class="info-box mt-8">
+    <div class="flex items-center gap-2 mb-2"><i data-lucide="info" class="w-5 h-5 text-cyber-blue"></i> <span class="font-bold text-cyber-blue">هل تعلم؟</span>
+    </div>
+    <p class="text-gray-300 text-sm">تُقدر الخسائر العالمية الناتجة عن الجرائم السيبرانية بأكثر من 10 تريليونات دولار سنويًا بحلول 2025، مما يجعل الأمن السيبراني من أهم المجالات المطلوبة عالميًا.</p>
+   </div>
+  </section>
+  <div class="section-divider"></div><!-- Session 1 -->
+  <section id="session1" class="px-4 py-16 max-w-6xl mx-auto fade-in">
+   <div class="text-center mb-12">
+    <div class="inline-flex items-center gap-2 bg-cyber-blue/10 border border-cyber-blue/30 rounded-full px-4 py-1 mb-4 text-sm text-cyber-blue"><span>الجلسة الأولى</span>
+    </div>
+    <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">أساسيات الأمن السيبراني</h2>
+    <p class="text-gray-400">فهم الأساسيات والمفاهيم الجوهرية لعالم الأمن السيبراني</p>
+   </div><!-- Topic 1: Why Cybersecurity Now -->
+   <div class="cyber-card p-6 mb-6">
+    <div class="flex items-center gap-3 mb-4">
+     <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyber-blue to-cyber-purple flex items-center justify-center text-white text-sm font-bold">
+      1
+     </div>
+     <h3 class="text-xl font-bold text-white">لماذا الأمن السيبراني الآن؟</h3>
+    </div>
+    <div class="text-gray-300 text-sm leading-relaxed space-y-4">
+     <p>في عصر التحول الرقمي المتسارع، أصبحت حياتنا اليومية مرتبطة بالإنترنت بشكل لم يسبق له مثيل. من الخدمات المصرفية إلى التعليم، ومن الرعاية الصحية إلى التواصل الاجتماعي، كل شيء متصل بالشبكة.</p>
+     <div class="info-box">
+      <p><strong class="text-cyber-blue">أرقام مهمة:</strong></p>
+      <ul class="mt-2 space-y-1">
+       <li>• أكثر من 5 مليارات مستخدم للإنترنت حول العالم</li>
+       <li>• هجوم سيبراني يحدث كل 39 ثانية</li>
+       <li>• 95% من الاختراقات بسبب خطأ بشري</li>
+       <li>• متوسط تكلفة اختراق البيانات: 4.45 مليون دولار</li>
+      </ul>
+     </div>
+     <p>الحاجة للأمن السيبراني لم تعد رفاهية بل ضرورة حتمية لحماية الأفراد والمؤسسات والدول من التهديدات المتزايدة يومًا بعد يوم.</p>
+    </div>
+   </div><!-- Topic 2: What is Cybersecurity -->
+   <div class="cyber-card p-6 mb-6">
+    <div class="flex items-center gap-3 mb-4">
+     <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyber-blue to-cyber-purple flex items-center justify-center text-white text-sm font-bold">
+      2
+     </div>
+     <h3 class="text-xl font-bold text-white">ما هو الأمن السيبراني؟</h3>
+    </div>
+    <div class="text-gray-300 text-sm leading-relaxed space-y-4">
+     <p>الأمن السيبراني هو ممارسة حماية الأنظمة والشبكات والبرامج والبيانات من الهجمات الرقمية التي تهدف عادةً إلى الوصول إلى المعلومات الحساسة أو تغييرها أو تدميرها أو ابتزاز المستخدمين أو تعطيل العمليات التجارية.</p>
+     <div class="bg-gradient-to-r from-cyber-blue/5 to-cyber-purple/5 border border-cyber-blue/20 rounded-xl p-5">
+      <p class="text-center text-lg font-bold text-white mb-3">الثالوث الأمني (CIA Triad)</p>
+      <div class="grid grid-cols-3 gap-4 text-center">
+       <div>
+        <div class="w-12 h-12 mx-auto rounded-full bg-cyber-blue/20 flex items-center justify-center mb-2"><i data-lucide="lock" class="w-5 h-5 text-cyber-blue"></i>
+        </div>
+        <p class="font-bold text-cyber-blue text-xs">السرية</p>
+        <p class="text-xs text-gray-400 mt-1">Confidentiality</p>
+       </div>
+       <div>
+        <div class="w-12 h-12 mx-auto rounded-full bg-cyber-purple/20 flex items-center justify-center mb-2"><i data-lucide="check-circle" class="w-5 h-5 text-cyber-purple"></i>
+        </div>
+        <p class="font-bold text-cyber-purple text-xs">السلامة</p>
+        <p class="text-xs text-gray-400 mt-1">Integrity</p>
+       </div>
+       <div>
+        <div class="w-12 h-12 mx-auto rounded-full bg-green-400/20 flex items-center justify-center mb-2"><i data-lucide="wifi" class="w-5 h-5 text-green-400"></i>
+        </div>
+        <p class="font-bold text-green-400 text-xs">التوافر</p>
+        <p class="text-xs text-gray-400 mt-1">Availability</p>
+       </div>
+      </div>
+     </div>
+     <ul class="space-y-2">
+      <li><strong class="text-white">السرية:</strong> ضمان أن المعلومات لا يمكن الوصول إليها إلا من قبل المخولين.</li>
+      <li><strong class="text-white">السلامة:</strong> ضمان دقة واكتمال المعلومات وعدم العبث بها.</li>
+      <li><strong class="text-white">التوافر:</strong> ضمان إمكانية الوصول للمعلومات والخدمات عند الحاجة.</li>
+     </ul>
+    </div>
+   </div><!-- Topic 3: Components -->
+   <div class="cyber-card p-6 mb-6">
+    <div class="flex items-center gap-3 mb-4">
+     <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyber-blue to-cyber-purple flex items-center justify-center text-white text-sm font-bold">
+      3
+     </div>
+     <h3 class="text-xl font-bold text-white">مكونات الأمن السيبراني</h3>
+    </div>
+    <div class="text-gray-300 text-sm leading-relaxed space-y-4">
+     <p>يتكون الأمن السيبراني من عدة طبقات متكاملة تعمل معًا لتوفير حماية شاملة:</p>
+     <div class="grid sm:grid-cols-2 gap-4">
+      <div class="bg-cyber-dark/50 border border-gray-700 rounded-lg p-4">
+       <h4 class="font-bold text-cyber-blue mb-2">🔒 أمن الشبكات</h4>
+       <p class="text-xs">حماية البنية التحتية للشبكة من الوصول غير المصرح به والهجمات</p>
+      </div>
+      <div class="bg-cyber-dark/50 border border-gray-700 rounded-lg p-4">
+       <h4 class="font-bold text-cyber-blue mb-2">💻 أمن التطبيقات</h4>
+       <p class="text-xs">حماية البرمجيات من الثغرات والاستغلال أثناء التطوير والتشغيل</p>
+      </div>
+      <div class="bg-cyber-dark/50 border border-gray-700 rounded-lg p-4">
+       <h4 class="font-bold text-cyber-blue mb-2">☁️ أمن السحابة</h4>
+       <p class="text-xs">حماية البيانات والتطبيقات المستضافة في بيئات الحوسبة السحابية</p>
+      </div>
+      <div class="bg-cyber-dark/50 border border-gray-700 rounded-lg p-4">
+       <h4 class="font-bold text-cyber-blue mb-2">📱 أمن الأجهزة</h4>
+       <p class="text-xs">حماية الأجهزة الطرفية كالحواسيب والهواتف من التهديدات</p>
+      </div>
+      <div class="bg-cyber-dark/50 border border-gray-700 rounded-lg p-4">
+       <h4 class="font-bold text-cyber-blue mb-2">🗄️ أمن البيانات</h4>
+       <p class="text-xs">حماية البيانات أثناء التخزين والنقل باستخدام التشفير</p>
+      </div>
+      <div class="bg-cyber-dark/50 border border-gray-700 rounded-lg p-4">
+       <h4 class="font-bold text-cyber-blue mb-2">👤 أمن الهوية</h4>
+       <p class="text-xs">إدارة الهويات والتحكم في الوصول والمصادقة</p>
+      </div>
+     </div>
+    </div>
+   </div><!-- Topic 4: People, Processes, Technology -->
+   <div class="cyber-card p-6 mb-6">
+    <div class="flex items-center gap-3 mb-4">
+     <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyber-blue to-cyber-purple flex items-center justify-center text-white text-sm font-bold">
+      4
+     </div>
+     <h3 class="text-xl font-bold text-white">الأشخاص والعمليات والتقنية</h3>
+    </div>
+    <div class="text-gray-300 text-sm leading-relaxed space-y-4">
+     <p>يعتمد الأمن السيبراني الفعّال على ثلاثة أعمدة أساسية تتكامل مع بعضها:</p>
+     <div class="grid md:grid-cols-3 gap-4">
+      <div class="text-center p-4 bg-cyber-blue/5 border border-cyber-blue/20 rounded-xl">
+       <div class="text-3xl mb-2">
+        👥
+       </div>
+       <h4 class="font-bold text-cyber-blue mb-2">الأشخاص</h4>
+       <p class="text-xs">التوعية والتدريب وبناء ثقافة أمنية. الإنسان هو الحلقة الأضعف والأقوى في آن واحد.</p>
+      </div>
+      <div class="text-center p-4 bg-cyber-purple/5 border border-cyber-purple/20 rounded-xl">
+       <div class="text-3xl mb-2">
+        ⚙️
+       </div>
+       <h4 class="font-bold text-cyber-purple mb-2">العمليات</h4>
+       <p class="text-xs">السياسات والإجراءات وخطط الاستجابة للحوادث. تحدد كيفية التعامل مع التهديدات.</p>
+      </div>
+      <div class="text-center p-4 bg-green-400/5 border border-green-400/20 rounded-xl">
+       <div class="text-3xl mb-2">
+        🛡️
+       </div>
+       <h4 class="font-bold text-green-400 mb-2">التقنية</h4>
+       <p class="text-xs">الأدوات والبرمجيات والأجهزة المستخدمة في الحماية. جدران الحماية، أنظمة كشف التسلل، التشفير.</p>
+      </div>
+     </div>
+    </div>
+   </div><!-- Topic 5: Attack Surface -->
+   <div class="cyber-card p-6 mb-6">
+    <div class="flex items-center gap-3 mb-4">
+     <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyber-blue to-cyber-purple flex items-center justify-center text-white text-sm font-bold">
+      5
+     </div>
+     <h3 class="text-xl font-bold text-white">مفهوم سطح الهجوم (Attack Surface)</h3>
+    </div>
+    <div class="text-gray-300 text-sm leading-relaxed space-y-4">
+     <p>سطح الهجوم هو مجموع جميع النقاط التي يمكن لمهاجم من خلالها محاولة الدخول إلى نظام أو استخراج بيانات منه. كلما زاد سطح الهجوم، زادت فرص الاختراق.</p>
+     <div class="info-box">
+      <p class="font-bold text-cyber-blue mb-2">أمثلة على سطح الهجوم:</p>
+      <ul class="space-y-1 text-xs">
+       <li>• المنافذ المفتوحة على الخوادم</li>
+       <li>• تطبيقات الويب والواجهات البرمجية (APIs)</li>
+       <li>• حسابات الموظفين وبيانات الدخول</li>
+       <li>• الأجهزة المتصلة بالشبكة (IoT)</li>
+       <li>• البريد الإلكتروني والمرفقات</li>
+       <li>• شبكات Wi-Fi غير المؤمنة</li>
+      </ul>
+     </div>
+     <div class="warning-box">
+      <p class="text-yellow-400 text-xs font-bold">💡 القاعدة الذهبية: قلّل سطح الهجوم قدر الإمكان عن طريق إغلاق المنافذ غير المستخدمة، وتحديث البرمجيات، وتقييد صلاحيات الوصول.</p>
+     </div>
+    </div>
+   </div><!-- Topic 6: How Data Travels -->
+   <div class="cyber-card p-6 mb-6">
+    <div class="flex items-center gap-3 mb-4">
+     <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyber-blue to-cyber-purple flex items-center justify-center text-white text-sm font-bold">
+      6
+     </div>
+     <h3 class="text-xl font-bold text-white">كيف تنتقل البيانات عبر الإنترنت</h3>
+    </div>
+    <div class="text-gray-300 text-sm leading-relaxed space-y-4">
+     <p>عندما ترسل رسالة أو تتصفح موقعًا، تمر بياناتك بعدة مراحل ومحطات:</p>
+     <div class="bg-cyber-dark/50 border border-gray-700 rounded-xl p-5 space-y-3">
+      <div class="flex items-center gap-3"><span class="bg-cyber-blue/20 text-cyber-blue px-2 py-1 rounded text-xs font-bold">1</span> <span>تقسيم البيانات إلى حزم صغيرة (Packets)</span>
+      </div>
+      <div class="flex items-center gap-3"><span class="bg-cyber-blue/20 text-cyber-blue px-2 py-1 rounded text-xs font-bold">2</span> <span>إضافة عنوان المرسل والمستقبل (IP Address)</span>
+      </div>
+      <div class="flex items-center gap-3"><span class="bg-cyber-blue/20 text-cyber-blue px-2 py-1 rounded text-xs font-bold">3</span> <span>التوجيه عبر أجهزة الراوتر والسويتش</span>
+      </div>
+      <div class="flex items-center gap-3"><span class="bg-cyber-blue/20 text-cyber-blue px-2 py-1 rounded text-xs font-bold">4</span> <span>المرور عبر مزودي خدمة الإنترنت (ISP)</span>
+      </div>
+      <div class="flex items-center gap-3"><span class="bg-cyber-blue/20 text-cyber-blue px-2 py-1 rounded text-xs font-bold">5</span> <span>الوصول إلى الخادم الهدف وإعادة تجميع الحزم</span>
+      </div>
+     </div>
+     <div class="warning-box">
+      <p class="text-yellow-400 text-xs font-bold">⚠️ تنبيه أمني: أي نقطة في هذا المسار يمكن أن تكون عرضة للاعتراض أو التلاعب إذا لم تكن البيانات مشفرة!</p>
+     </div>
+    </div>
+   </div><!-- Topic 7: Evolution Timeline -->
+   <div class="cyber-card p-6 mb-6">
+    <div class="flex items-center gap-3 mb-4">
+     <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyber-blue to-cyber-purple flex items-center justify-center text-white text-sm font-bold">
+      7
+     </div>
+     <h3 class="text-xl font-bold text-white">تطور الأمن السيبراني</h3>
+    </div>
+    <div class="text-gray-300 text-sm leading-relaxed">
+     <div class="space-y-4 mt-4">
+      <div class="flex gap-4 items-start">
+       <div class="min-w-[80px] text-left"><span class="bg-cyber-blue/20 text-cyber-blue px-2 py-1 rounded text-xs font-bold">1970s</span>
+       </div>
+       <div>
+        <p class="font-bold text-white">بداية الحوسبة</p>
+        <p class="text-xs text-gray-400">ظهور أول فيروسات الحاسوب التجريبية (Creeper) وبرنامج الحماية الأول (Reaper)</p>
+       </div>
+      </div>
+      <div class="flex gap-4 items-start">
+       <div class="min-w-[80px] text-left"><span class="bg-cyber-blue/20 text-cyber-blue px-2 py-1 rounded text-xs font-bold">1980s</span>
+       </div>
+       <div>
+        <p class="font-bold text-white">عصر الفيروسات</p>
+        <p class="text-xs text-gray-400">انتشار الفيروسات عبر الأقراص المرنة، ظهور أول برامج مكافحة الفيروسات</p>
+       </div>
+      </div>
+      <div class="flex gap-4 items-start">
+       <div class="min-w-[80px] text-left"><span class="bg-cyber-purple/20 text-cyber-purple px-2 py-1 rounded text-xs font-bold">1990s</span>
+       </div>
+       <div>
+        <p class="font-bold text-white">عصر الإنترنت</p>
+        <p class="text-xs text-gray-400">ظهور جدران الحماية، هجمات الديدان، بداية التجارة الإلكترونية والحاجة لتأمينها</p>
+       </div>
+      </div>
+      <div class="flex gap-4 items-start">
+       <div class="min-w-[80px] text-left"><span class="bg-cyber-purple/20 text-cyber-purple px-2 py-1 rounded text-xs font-bold">2000s</span>
+       </div>
+       <div>
+        <p class="font-bold text-white">عصر الجريمة المنظمة</p>
+        <p class="text-xs text-gray-400">تحول القرصنة من هواية إلى جريمة منظمة، ظهور التصيد الاحتيالي بشكل واسع</p>
+       </div>
+      </div>
+      <div class="flex gap-4 items-start">
+       <div class="min-w-[80px] text-left"><span class="bg-green-400/20 text-green-400 px-2 py-1 rounded text-xs font-bold">2010s</span>
+       </div>
+       <div>
+        <p class="font-bold text-white">عصر الحروب السيبرانية</p>
+        <p class="text-xs text-gray-400">هجمات على البنى التحتية الحكومية، ظهور فيروسات الفدية، اختراقات ضخمة للبيانات</p>
+       </div>
+      </div>
+      <div class="flex gap-4 items-start">
+       <div class="min-w-[80px] text-left"><span class="bg-green-400/20 text-green-400 px-2 py-1 rounded text-xs font-bold">2020s</span>
+       </div>
+       <div>
+        <p class="font-bold text-white">عصر الذكاء الاصطناعي</p>
+        <p class="text-xs text-gray-400">استخدام AI في الهجوم والدفاع، هجمات سلاسل التوريد، أمن العمل عن بعد</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Topic 8: Real Examples -->
+   <div class="cyber-card p-6 mb-6">
+    <div class="flex items-center gap-3 mb-4">
+     <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyber-blue to-cyber-purple flex items-center justify-center text-white text-sm font-bold">
+      8
+     </div>
+     <h3 class="text-xl font-bold text-white">أمثلة واقعية على الاختراقات</h3>
+    </div>
+    <div class="text-gray-300 text-sm leading-relaxed space-y-4">
+     <div class="grid sm:grid-cols-2 gap-4">
+      <div class="attack-card">
+       <h4 class="font-bold text-red-400 mb-2">🔴 اختراق Equifax (2017)</h4>
+       <p class="text-xs">سرقة بيانات 147 مليون شخص بسبب ثغرة لم يتم ترقيعها. تضمنت أرقام الضمان الاجتماعي وبيانات بطاقات الائتمان.</p>
+      </div>
+      <div class="attack-card">
+       <h4 class="font-bold text-red-400 mb-2">🔴 هجوم WannaCry (2017)</h4>
+       <p class="text-xs">فيروس فدية أصاب أكثر من 200,000 جهاز في 150 دولة، وشلّ أنظمة المستشفيات والشركات.</p>
+      </div>
+      <div class="attack-card">
+       <h4 class="font-bold text-red-400 mb-2">🔴 اختراق SolarWinds (2020)</h4>
+       <p class="text-xs">هجوم على سلسلة التوريد أثّر على آلاف المؤسسات الحكومية والخاصة حول العالم.</p>
+      </div>
+      <div class="attack-card">
+       <h4 class="font-bold text-red-400 mb-2">🔴 اختراق Colonial Pipeline (2021)</h4>
+       <p class="text-xs">هجوم فدية أوقف أكبر خط أنابيب وقود في أمريكا، ودفعت الشركة فدية بملايين الدولارات.</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <div class="section-divider"></div><!-- Session 2 -->
+  <section id="session2" class="px-4 py-16 max-w-6xl mx-auto fade-in">
+   <div class="text-center mb-12">
+    <div class="inline-flex items-center gap-2 bg-cyber-purple/10 border border-cyber-purple/30 rounded-full px-4 py-1 mb-4 text-sm text-cyber-purple"><span>الجلسة الثانية</span>
+    </div>
+    <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">الهجمات وعقلية المهاجم</h2>
+    <p class="text-gray-400">فهم كيف يفكر المهاجم وأنواع الهجمات السيبرانية</p>
+   </div><!-- How Hackers Think -->
+   <div class="cyber-card p-6 mb-6">
+    <div class="flex items-center gap-3 mb-4">
+     <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyber-purple to-pink-500 flex items-center justify-center text-white text-sm font-bold">
+      1
+     </div>
+     <h3 class="text-xl font-bold text-white">كيف يفكر الهاكر؟</h3>
+    </div>
+    <div class="text-gray-300 text-sm leading-relaxed space-y-4">
+     <p>لفهم كيفية الحماية، يجب أولاً فهم طريقة تفكير المهاجم. الهاكر يبحث دائمًا عن الحلقة الأضعف في السلسلة الأمنية.</p>
+     <div class="bg-cyber-dark/50 border border-gray-700 rounded-xl p-5">
+      <p class="font-bold text-cyber-purple mb-3">عقلية المهاجم تعتمد على:</p>
+      <ul class="space-y-2">
+       <li class="flex items-start gap-2"><span class="text-cyber-purple">▸</span> <strong class="text-white">الاستطلاع:</strong> جمع أكبر قدر من المعلومات عن الهدف</li>
+       <li class="flex items-start gap-2"><span class="text-cyber-purple">▸</span> <strong class="text-white">الصبر:</strong> قد يستغرق التخطيط أسابيع أو أشهر</li>
+       <li class="flex items-start gap-2"><span class="text-cyber-purple">▸</span> <strong class="text-white">الإبداع:</strong> إيجاد طرق غير تقليدية للوصول</li>
+       <li class="flex items-start gap-2"><span class="text-cyber-purple">▸</span> <strong class="text-white">الاستغلال:</strong> استغلال أصغر ثغرة للتوسع</li>
+       <li class="flex items-start gap-2"><span class="text-cyber-purple">▸</span> <strong class="text-white">الإخفاء:</strong> محو آثاره لتجنب الاكتشاف</li>
+      </ul>
+     </div>
+    </div>
+   </div><!-- Attack Phases -->
+   <div class="cyber-card p-6 mb-6">
+    <div class="flex items-center gap-3 mb-4">
+     <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyber-purple to-pink-500 flex items-center justify-center text-white text-sm font-bold">
+      2
+     </div>
+     <h3 class="text-xl font-bold text-white">مراحل الهجوم السيبراني (Cyber Kill Chain)</h3>
+    </div>
+    <div class="text-gray-300 text-sm leading-relaxed space-y-3">
+     <div class="space-y-3">
+      <div class="flex items-center gap-3 bg-red-500/5 border border-red-500/20 rounded-lg p-3"><span class="bg-red-500/20 text-red-400 px-2 py-1 rounded text-xs font-bold min-w-[24px] text-center">1</span>
+       <div>
+        <strong class="text-white">الاستطلاع (Reconnaissance)</strong><br><span class="text-xs text-gray-400">جمع معلومات عن الهدف: عناوين IP، الموظفين، الأنظمة المستخدمة</span>
+       </div>
+      </div>
+      <div class="flex items-center gap-3 bg-red-500/5 border border-red-500/20 rounded-lg p-3"><span class="bg-red-500/20 text-red-400 px-2 py-1 rounded text-xs font-bold min-w-[24px] text-center">2</span>
+       <div>
+        <strong class="text-white">التسليح (Weaponization)</strong><br><span class="text-xs text-gray-400">إنشاء أداة الهجوم: برمجية خبيثة أو استغلال ثغرة معروفة</span>
+       </div>
+      </div>
+      <div class="flex items-center gap-3 bg-red-500/5 border border-red-500/20 rounded-lg p-3"><span class="bg-red-500/20 text-red-400 px-2 py-1 rounded text-xs font-bold min-w-[24px] text-center">3</span>
+       <div>
+        <strong class="text-white">التوصيل (Delivery)</strong><br><span class="text-xs text-gray-400">إيصال السلاح للهدف عبر بريد إلكتروني، موقع مزيف، أو USB</span>
+       </div>
+      </div>
+      <div class="flex items-center gap-3 bg-orange-500/5 border border-orange-500/20 rounded-lg p-3"><span class="bg-orange-500/20 text-orange-400 px-2 py-1 rounded text-xs font-bold min-w-[24px] text-center">4</span>
+       <div>
+        <strong class="text-white">الاستغلال (Exploitation)</strong><br><span class="text-xs text-gray-400">تفعيل الثغرة أو البرمجية الخبيثة على جهاز الضحية</span>
+       </div>
+      </div>
+      <div class="flex items-center gap-3 bg-orange-500/5 border border-orange-500/20 rounded-lg p-3"><span class="bg-orange-500/20 text-orange-400 px-2 py-1 rounded text-xs font-bold min-w-[24px] text-center">5</span>
+       <div>
+        <strong class="text-white">التثبيت (Installation)</strong><br><span class="text-xs text-gray-400">تثبيت باب خلفي لضمان الوصول المستمر</span>
+       </div>
+      </div>
+      <div class="flex items-center gap-3 bg-yellow-500/5 border border-yellow-500/20 rounded-lg p-3"><span class="bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded text-xs font-bold min-w-[24px] text-center">6</span>
+       <div>
+        <strong class="text-white">القيادة والتحكم (C2)</strong><br><span class="text-xs text-gray-400">إنشاء قناة اتصال مع الجهاز المخترق للتحكم عن بعد</span>
+       </div>
+      </div>
+      <div class="flex items-center gap-3 bg-yellow-500/5 border border-yellow-500/20 rounded-lg p-3"><span class="bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded text-xs font-bold min-w-[24px] text-center">7</span>
+       <div>
+        <strong class="text-white">تحقيق الهدف (Actions)</strong><br><span class="text-xs text-gray-400">سرقة البيانات، تشفير الملفات، تدمير الأنظمة</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Types of Hackers -->
+   <div class="cyber-card p-6 mb-6">
+    <div class="flex items-center gap-3 mb-4">
+     <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyber-purple to-pink-500 flex items-center justify-center text-white text-sm font-bold">
+      3
+     </div>
+     <h3 class="text-xl font-bold text-white">أنواع الهاكرز</h3>
+    </div>
+    <div class="grid sm:grid-cols-3 gap-4 text-sm">
+     <div class="text-center p-4 bg-white/5 border border-gray-600 rounded-xl">
+      <div class="text-3xl mb-2">
+       🤍
+      </div>
+      <h4 class="font-bold text-white mb-1">White Hat</h4>
+      <p class="text-xs text-gray-400">الهاكر الأخلاقي. يعمل بإذن قانوني لاكتشاف الثغرات وإصلاحها. يعمل لصالح المؤسسات.</p>
+     </div>
+     <div class="text-center p-4 bg-gray-900/50 border border-gray-600 rounded-xl">
+      <div class="text-3xl mb-2">
+       🖤
+      </div>
+      <h4 class="font-bold text-white mb-1">Black Hat</h4>
+      <p class="text-xs text-gray-400">الهاكر المجرم. يخترق الأنظمة بشكل غير قانوني بهدف السرقة أو التدمير أو الابتزاز.</p>
+     </div>
+     <div class="text-center p-4 bg-gray-500/5 border border-gray-600 rounded-xl">
+      <div class="text-3xl mb-2">
+       🩶
+      </div>
+      <h4 class="font-bold text-white mb-1">Gray Hat</h4>
+      <p class="text-xs text-gray-400">بين الاثنين. قد يكتشف ثغرات بدون إذن لكن لا يستغلها بشكل مدمر، وقد يبلغ عنها.</p>
+     </div>
+    </div>
+   </div><!-- Attack Types with Accordions -->
+   <div class="cyber-card p-6 mb-6">
+    <div class="flex items-center gap-3 mb-4">
+     <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyber-purple to-pink-500 flex items-center justify-center text-white text-sm font-bold">
+      4
+     </div>
+     <h3 class="text-xl font-bold text-white">أنواع الهجمات السيبرانية</h3>
+    </div>
+    <div class="space-y-3"><!-- Phishing -->
+     <div class="accordion-item border border-gray-700 rounded-lg overflow-hidden"><button class="accordion-btn w-full flex items-center justify-between p-4 text-right hover:bg-white/5 transition" onclick="toggleAccordion(this)"> <span class="font-bold text-white flex items-center gap-2">🎣 التصيد الاحتيالي (Phishing)</span> <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 accordion-icon transition-transform"></i> </button>
+      <div class="accordion-content px-4 text-sm text-gray-300">
+       <div class="pb-4 space-y-3">
+        <p>هجوم يعتمد على خداع المستخدم لتقديم معلوماته الحساسة من خلال رسائل أو مواقع مزيفة تبدو شرعية.</p>
+        <p><strong class="text-cyber-purple">أنواعه:</strong></p>
+        <ul class="space-y-1 mr-4">
+         <li>• <strong>Spear Phishing:</strong> يستهدف شخصًا محددًا برسالة مخصصة</li>
+         <li>• <strong>Whaling:</strong> يستهدف المديرين التنفيذيين والشخصيات المهمة</li>
+         <li>• <strong>Smishing:</strong> تصيد عبر الرسائل النصية SMS</li>
+         <li>• <strong>Vishing:</strong> تصيد عبر المكالمات الهاتفية</li>
+        </ul>
+        <div class="warning-box">
+         <p class="text-yellow-400 text-xs font-bold">⚠️ كيف تحمي نفسك: تحقق دائمًا من عنوان المرسل، لا تنقر على روابط مشبوهة، تأكد من وجود HTTPS.</p>
+        </div>
+       </div>
+      </div>
+     </div><!-- Malware -->
+     <div class="accordion-item border border-gray-700 rounded-lg overflow-hidden"><button class="accordion-btn w-full flex items-center justify-between p-4 text-right hover:bg-white/5 transition" onclick="toggleAccordion(this)"> <span class="font-bold text-white flex items-center gap-2">🦠 البرمجيات الخبيثة (Malware)</span> <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 accordion-icon transition-transform"></i> </button>
+      <div class="accordion-content px-4 text-sm text-gray-300">
+       <div class="pb-4 space-y-3">
+        <p>برامج مصممة لإلحاق الضرر بالأنظمة أو سرقة البيانات أو التحكم بالأجهزة دون علم المستخدم.</p>
+        <div class="grid sm:grid-cols-2 gap-2">
+         <div class="bg-cyber-dark/50 p-3 rounded-lg">
+          <strong class="text-red-400">الفيروسات:</strong><br><span class="text-xs">تحتاج لملف مضيف وتنتشر عند تشغيله</span>
+         </div>
+         <div class="bg-cyber-dark/50 p-3 rounded-lg">
+          <strong class="text-red-400">الديدان:</strong><br><span class="text-xs">تنتشر ذاتيًا عبر الشبكة بدون تدخل</span>
+         </div>
+         <div class="bg-cyber-dark/50 p-3 rounded-lg">
+          <strong class="text-red-400">أحصنة طروادة:</strong><br><span class="text-xs">تتنكر كبرامج شرعية</span>
+         </div>
+         <div class="bg-cyber-dark/50 p-3 rounded-lg">
+          <strong class="text-red-400">الفدية:</strong><br><span class="text-xs">تشفر الملفات وتطلب فدية</span>
+         </div>
+         <div class="bg-cyber-dark/50 p-3 rounded-lg">
+          <strong class="text-red-400">التجسس:</strong><br><span class="text-xs">تراقب نشاط المستخدم خفية</span>
+         </div>
+         <div class="bg-cyber-dark/50 p-3 rounded-lg">
+          <strong class="text-red-400">Rootkit:</strong><br><span class="text-xs">تخفي وجودها في نواة النظام</span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Password Attacks -->
+     <div class="accordion-item border border-gray-700 rounded-lg overflow-hidden"><button class="accordion-btn w-full flex items-center justify-between p-4 text-right hover:bg-white/5 transition" onclick="toggleAccordion(this)"> <span class="font-bold text-white flex items-center gap-2">🔑 هجمات كلمات المرور</span> <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 accordion-icon transition-transform"></i> </button>
+      <div class="accordion-content px-4 text-sm text-gray-300">
+       <div class="pb-4 space-y-3">
+        <p>محاولات الوصول لحسابات المستخدمين عبر تخمين أو كسر كلمات المرور.</p>
+        <ul class="space-y-2">
+         <li><strong class="text-white">Brute Force:</strong> تجربة جميع الاحتمالات الممكنة حتى إيجاد الصحيحة</li>
+         <li><strong class="text-white">Dictionary Attack:</strong> استخدام قائمة كلمات شائعة ومحتملة</li>
+         <li><strong class="text-white">Credential Stuffing:</strong> استخدام بيانات مسربة من اختراقات سابقة</li>
+         <li><strong class="text-white">Rainbow Tables:</strong> جداول محسوبة مسبقًا لكسر التشفير</li>
+        </ul>
+        <div class="info-box">
+         <p class="text-cyber-blue text-xs font-bold">💡 كلمة مرور قوية = 12 حرفًا على الأقل + أحرف كبيرة وصغيرة + أرقام + رموز</p>
+        </div>
+       </div>
+      </div>
+     </div><!-- DDoS -->
+     <div class="accordion-item border border-gray-700 rounded-lg overflow-hidden"><button class="accordion-btn w-full flex items-center justify-between p-4 text-right hover:bg-white/5 transition" onclick="toggleAccordion(this)"> <span class="font-bold text-white flex items-center gap-2">🌊 هجمات الحرمان من الخدمة (DDoS)</span> <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 accordion-icon transition-transform"></i> </button>
+      <div class="accordion-content px-4 text-sm text-gray-300">
+       <div class="pb-4 space-y-3">
+        <p>إغراق خادم أو شبكة بكمية هائلة من الطلبات لإسقاطه ومنع المستخدمين الشرعيين من الوصول.</p>
+        <p><strong class="text-white">كيف يعمل:</strong> يستخدم المهاجم شبكة من الأجهزة المخترقة (Botnet) لإرسال ملايين الطلبات في وقت واحد.</p>
+        <p><strong class="text-white">أشهر الأمثلة:</strong> هجوم على GitHub عام 2018 بحجم 1.35 تيرابت/ثانية.</p>
+       </div>
+      </div>
+     </div><!-- Social Engineering -->
+     <div class="accordion-item border border-gray-700 rounded-lg overflow-hidden"><button class="accordion-btn w-full flex items-center justify-between p-4 text-right hover:bg-white/5 transition" onclick="toggleAccordion(this)"> <span class="font-bold text-white flex items-center gap-2">🎭 الهندسة الاجتماعية</span> <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 accordion-icon transition-transform"></i> </button>
+      <div class="accordion-content px-4 text-sm text-gray-300">
+       <div class="pb-4 space-y-3">
+        <p>فن التلاعب بالبشر للحصول على معلومات سرية أو تنفيذ إجراءات معينة. لا تعتمد على التقنية بل على علم النفس.</p>
+        <p><strong class="text-cyber-purple">أساليبها:</strong></p>
+        <ul class="space-y-1 mr-4">
+         <li>• <strong>Pretexting:</strong> انتحال شخصية للحصول على معلومات</li>
+         <li>• <strong>Baiting:</strong> إغراء الضحية بشيء مجاني (USB ملغم)</li>
+         <li>• <strong>Tailgating:</strong> الدخول خلف شخص مصرح له</li>
+         <li>• <strong>Quid Pro Quo:</strong> تقديم خدمة مقابل معلومات</li>
+        </ul>
+       </div>
+      </div>
+     </div><!-- SQL Injection -->
+     <div class="accordion-item border border-gray-700 rounded-lg overflow-hidden"><button class="accordion-btn w-full flex items-center justify-between p-4 text-right hover:bg-white/5 transition" onclick="toggleAccordion(this)"> <span class="font-bold text-white flex items-center gap-2">💉 حقن SQL (SQL Injection)</span> <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 accordion-icon transition-transform"></i> </button>
+      <div class="accordion-content px-4 text-sm text-gray-300">
+       <div class="pb-4 space-y-3">
+        <p>إدخال أوامر SQL خبيثة في حقول الإدخال لاستغلال ثغرات في قواعد البيانات، مما يتيح سرقة أو تعديل أو حذف البيانات.</p>
+        <div class="bg-gray-900 rounded-lg p-3 font-mono text-xs text-green-400 direction-ltr text-left">
+         <p class="text-gray-500"># مثال على إدخال خبيث:</p>
+         <p>' OR '1'='1' --</p>
+         <p class="mt-2 text-gray-500"># يتجاوز فحص كلمة المرور</p>
+        </div>
+        <div class="warning-box">
+         <p class="text-yellow-400 text-xs font-bold">⚠️ الحماية: استخدام Prepared Statements، التحقق من المدخلات، تقييد صلاحيات قاعدة البيانات.</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Scenario Analysis -->
+   <div class="cyber-card p-6 mb-6">
+    <div class="flex items-center gap-3 mb-4">
+     <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyber-purple to-pink-500 flex items-center justify-center text-white text-sm font-bold">
+      5
+     </div>
+     <h3 class="text-xl font-bold text-white">تحليل سيناريو اختراق</h3>
+    </div>
+    <div class="text-gray-300 text-sm leading-relaxed space-y-4">
+     <div class="bg-red-500/5 border border-red-500/20 rounded-xl p-5">
+      <p class="font-bold text-red-400 mb-3">📋 السيناريو: اختراق شركة تقنية</p>
+      <div class="space-y-3">
+       <p><strong class="text-white">الخطوة 1:</strong> أرسل المهاجم بريدًا إلكترونيًا مزيفًا لموظف في قسم الموارد البشرية يدعي أنه من شركة توظيف.</p>
+       <p><strong class="text-white">الخطوة 2:</strong> نقر الموظف على رابط ملغم فتم تحميل برمجية خبيثة على جهازه.</p>
+       <p><strong class="text-white">الخطوة 3:</strong> استخدم المهاجم الجهاز المخترق للتنقل داخل الشبكة الداخلية.</p>
+       <p><strong class="text-white">الخطوة 4:</strong> وصل لقاعدة بيانات العملاء وسرق ملايين السجلات.</p>
+       <p><strong class="text-white">الخطوة 5:</strong> طالب بفدية 5 ملايين دولار مقابل عدم نشر البيانات.</p>
+      </div>
+     </div>
+     <div class="info-box">
+      <p class="font-bold text-cyber-blue mb-2">🤔 أسئلة للتفكير النقدي:</p>
+      <ul class="space-y-1">
+       <li>• أين كانت نقطة الضعف الأولى؟</li>
+       <li>• كيف كان يمكن منع هذا الهجوم؟</li>
+       <li>• ما هي الإجراءات المطلوبة بعد اكتشاف الاختراق؟</li>
+       <li>• هل يجب دفع الفدية؟ لماذا؟</li>
+      </ul>
+     </div>
+    </div>
+   </div>
+  </section>
+  <div class="section-divider"></div><!-- Activities Section -->
+  <section id="activities" class="px-4 py-16 max-w-6xl mx-auto fade-in">
+   <div class="text-center mb-12">
+    <div class="inline-flex items-center gap-2 bg-green-400/10 border border-green-400/30 rounded-full px-4 py-1 mb-4 text-sm text-green-400"><i data-lucide="activity" class="w-4 h-4"></i> <span>الأنشطة التدريبية</span>
+    </div>
+    <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">أنشطة وتمارين تطبيقية</h2>
+    <p class="text-gray-400">تطبيق المفاهيم من خلال أنشطة تفاعلية</p>
+   </div>
+   <div class="grid md:grid-cols-2 gap-6"><!-- Activity 1 -->
+    <div class="cyber-card p-6">
+     <div class="flex items-center gap-2 mb-3"><span class="bg-green-400/20 text-green-400 px-2 py-1 rounded text-xs font-bold">نشاط 1</span>
+     </div>
+     <h4 class="font-bold text-white text-lg mb-3">🔍 اكتشف الثغرات</h4>
+     <p class="text-gray-300 text-sm mb-3">أمامك سيناريو لشبكة شركة صغيرة. حدد أكبر عدد من نقاط الضعف الأمنية:</p>
+     <div class="bg-cyber-dark/50 border border-gray-700 rounded-lg p-4 text-xs text-gray-400 space-y-2">
+      <p>• الموظفون يستخدمون كلمة مرور واحدة لجميع الحسابات</p>
+      <p>• شبكة Wi-Fi للزوار غير معزولة عن الشبكة الداخلية</p>
+      <p>• لم يتم تحديث نظام التشغيل منذ 6 أشهر</p>
+      <p>• باب غرفة الخوادم مفتوح دائمًا</p>
+      <p>• لا يوجد نظام نسخ احتياطي</p>
+     </div>
+     <p class="text-cyber-blue text-xs mt-3 font-bold">المطلوب: حدد كل ثغرة واقترح حلاً لها.</p>
+    </div><!-- Activity 2 -->
+    <div class="cyber-card p-6">
+     <div class="flex items-center gap-2 mb-3"><span class="bg-green-400/20 text-green-400 px-2 py-1 rounded text-xs font-bold">نشاط 2</span>
+     </div>
+     <h4 class="font-bold text-white text-lg mb-3">🎯 تحليل الهجوم</h4>
+     <p class="text-gray-300 text-sm mb-3">وصلتك الرسالة التالية على بريدك الإلكتروني. حللها:</p>
+     <div class="bg-gray-900 border border-red-500/30 rounded-lg p-4 text-xs space-y-2">
+      <p class="text-gray-400"><strong class="text-white">من:</strong> security@bankk-sa.com</p>
+      <p class="text-gray-400"><strong class="text-white">الموضوع:</strong> تنبيه أمني عاجل! تم إيقاف حسابك</p>
+      <p class="text-gray-400 mt-2">"عزيزي العميل، تم رصد نشاط مشبوه. يرجى تأكيد بياناتك خلال 24 ساعة وإلا سيتم إغلاق حسابك نهائيًا. انقر هنا الآن."</p>
+     </div>
+     <p class="text-cyber-blue text-xs mt-3 font-bold">المطلوب: حدد 5 علامات تدل على أن هذه رسالة تصيد.</p>
+    </div><!-- Activity 3 -->
+    <div class="cyber-card p-6">
+     <div class="flex items-center gap-2 mb-3"><span class="bg-yellow-400/20 text-yellow-400 px-2 py-1 rounded text-xs font-bold">نقاش</span>
+     </div>
+     <h4 class="font-bold text-white text-lg mb-3">💬 أسئلة نقاش</h4>
+     <ul class="text-gray-300 text-sm space-y-3">
+      <li class="flex items-start gap-2"><span class="text-yellow-400">1.</span> هل الهكر الأخلاقي يختلف عن المجرم فقط في النية؟</li>
+      <li class="flex items-start gap-2"><span class="text-yellow-400">2.</span> هل يجب على الحكومات تطوير أسلحة سيبرانية هجومية؟</li>
+      <li class="flex items-start gap-2"><span class="text-yellow-400">3.</span> هل الخصوصية الرقمية حق مطلق أم يمكن التنازل عنها للأمان؟</li>
+      <li class="flex items-start gap-2"><span class="text-yellow-400">4.</span> كيف يمكن تحقيق التوازن بين الأمان وسهولة الاستخدام؟</li>
+     </ul>
+    </div><!-- Activity 4 -->
+    <div class="cyber-card p-6">
+     <div class="flex items-center gap-2 mb-3"><span class="bg-cyber-purple/20 text-cyber-purple px-2 py-1 rounded text-xs font-bold">تمرين تفكير</span>
+     </div>
+     <h4 class="font-bold text-white text-lg mb-3">🧠 سيناريو واقعي</h4>
+     <p class="text-gray-300 text-sm mb-3">أنت مسؤول أمن المعلومات في مستشفى. اكتشفت أن:</p>
+     <ul class="text-gray-300 text-xs space-y-2">
+      <li>• جهاز طبيب تم اختراقه بفيروس فدية</li>
+      <li>• بيانات 10,000 مريض في خطر</li>
+      <li>• المهاجم يطلب 500,000 ريال</li>
+      <li>• النسخة الاحتياطية عمرها 3 أيام</li>
+     </ul>
+     <p class="text-cyber-purple text-xs mt-3 font-bold">المطلوب: ما هي خطوات الاستجابة الفورية؟ وهل ستدفع الفدية؟</p>
+    </div>
+   </div>
+  </section>
+  <div class="section-divider"></div><!-- Learning Outcomes -->
+  <section id="outcomes" class="px-4 py-16 max-w-6xl mx-auto fade-in">
+   <div class="text-center mb-12">
+    <div class="inline-flex items-center gap-2 bg-cyber-blue/10 border border-cyber-blue/30 rounded-full px-4 py-1 mb-4 text-sm text-cyber-blue"><i data-lucide="graduation-cap" class="w-4 h-4"></i> <span>مخرجات اليوم</span>
+    </div>
+    <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">ماذا تعلم المتدرب بنهاية اليوم؟</h2>
+   </div>
+   <div class="cyber-card p-8 mb-8">
+    <h3 class="text-xl font-bold text-white mb-6 text-center">🏆 أهم 5 نقاط مستفادة</h3>
+    <div class="space-y-4">
+     <div class="flex items-center gap-4 bg-cyber-blue/5 border border-cyber-blue/20 rounded-lg p-4">
+      <div class="w-10 h-10 rounded-full bg-cyber-blue/20 flex items-center justify-center text-cyber-blue font-bold shrink-0">
+       1
+      </div>
+      <p class="text-gray-300 text-sm">الأمن السيبراني يحمي السرية والسلامة والتوافر (CIA) للمعلومات والأنظمة الرقمية.</p>
+     </div>
+     <div class="flex items-center gap-4 bg-cyber-blue/5 border border-cyber-blue/20 rounded-lg p-4">
+      <div class="w-10 h-10 rounded-full bg-cyber-blue/20 flex items-center justify-center text-cyber-blue font-bold shrink-0">
+       2
+      </div>
+      <p class="text-gray-300 text-sm">المهاجمون يتبعون منهجية واضحة (Kill Chain) يمكن كسرها في أي مرحلة.</p>
+     </div>
+     <div class="flex items-center gap-4 bg-cyber-purple/5 border border-cyber-purple/20 rounded-lg p-4">
+      <div class="w-10 h-10 rounded-full bg-cyber-purple/20 flex items-center justify-center text-cyber-purple font-bold shrink-0">
+       3
+      </div>
+      <p class="text-gray-300 text-sm">العنصر البشري هو الحلقة الأضعف - 95% من الاختراقات بسبب خطأ بشري.</p>
+     </div>
+     <div class="flex items-center gap-4 bg-cyber-purple/5 border border-cyber-purple/20 rounded-lg p-4">
+      <div class="w-10 h-10 rounded-full bg-cyber-purple/20 flex items-center justify-center text-cyber-purple font-bold shrink-0">
+       4
+      </div>
+      <p class="text-gray-300 text-sm">الهكر الأخلاقي يستخدم نفس أدوات المهاجم لكن بإذن قانوني لحماية الأنظمة.</p>
+     </div>
+     <div class="flex items-center gap-4 bg-green-400/5 border border-green-400/20 rounded-lg p-4">
+      <div class="w-10 h-10 rounded-full bg-green-400/20 flex items-center justify-center text-green-400 font-bold shrink-0">
+       5
+      </div>
+      <p class="text-gray-300 text-sm">الحماية الفعالة تتطلب تكامل الأشخاص والعمليات والتقنية معًا.</p>
+     </div>
+    </div>
+   </div><!-- Summary -->
+   <div class="cyber-card p-6">
+    <h3 class="text-xl font-bold text-white mb-4 text-center">📝 ملخص شامل لليوم الأول</h3>
+    <div class="text-gray-300 text-sm leading-relaxed space-y-3">
+     <p>تناولنا اليوم مقدمة شاملة في عالم الأمن السيبراني، بدءًا من فهم أهميته المتزايدة في عصرنا الرقمي، مرورًا بالمفاهيم الأساسية كالثالوث الأمني ومكونات الحماية.</p>
+     <p>تعرفنا على كيفية انتقال البيانات وأين تكمن نقاط الضعف، واستعرضنا تاريخ تطور هذا المجال من السبعينيات حتى عصر الذكاء الاصطناعي.</p>
+     <p>في الجلسة الثانية، دخلنا في عقلية المهاجم وفهمنا مراحل الهجوم السيبراني، وتعرفنا على أبرز أنواع الهجمات من التصيد والبرمجيات الخبيثة إلى هجمات DDoS والهندسة الاجتماعية.</p>
+     <p>اختتمنا بتحليل سيناريوهات واقعية وأنشطة تطبيقية عززت الفهم العملي للمفاهيم النظرية.</p>
+    </div>
+   </div>
+  </section>
+  <div class="section-divider"></div><!-- Legal Protection -->
+  <section class="px-4 py-16 max-w-6xl mx-auto fade-in">
+   <div class="border border-yellow-500/30 bg-yellow-500/5 rounded-2xl p-8 text-center">
+    <div class="w-16 h-16 mx-auto rounded-full bg-yellow-500/20 flex items-center justify-center mb-4"><i data-lucide="alert-triangle" class="w-8 h-8 text-yellow-400"></i>
+    </div>
+    <h3 class="text-xl font-bold text-yellow-400 mb-4">⚖️ تنبيه قانوني مهم</h3>
+    <p class="text-gray-300 text-sm max-w-3xl mx-auto leading-relaxed">جميع المعلومات المقدمة داخل هذه الحقيبة التدريبية مخصصة لأغراض تعليمية وتوعوية فقط، ويُمنع منعًا باتًا استخدام أي معرفة أو مهارة مكتسبة بشكل مخالف للأنظمة والقوانين المعمول بها في المملكة العربية السعودية والقوانين الدولية. أي استخدام غير أخلاقي أو غير قانوني يعرّض صاحبه للمساءلة القانونية.</p>
+   </div>
+  </section><!-- Footer -->
+  <footer class="border-t border-gray-800 mt-16 py-8 px-4">
+   <div class="max-w-6xl mx-auto text-center">
+    <div class="flex items-center justify-center gap-2 mb-4">
+     <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyber-blue to-cyber-purple flex items-center justify-center"><i data-lucide="shield-check" class="w-4 h-4 text-white"></i>
+     </div><span class="font-bold gradient-text">المعسكر السيبراني للموهوبين</span>
+    </div>
+    <p class="text-gray-500 text-sm">جميع الحقوق محفوظة © قسم الموهوبين بتعليم جدة | تصميم وإعداد: سعود سعد العتيبي</p>
+   </div>
+  </footer>
+  <script>
+  // Initialize Lucide
+  lucide.createIcons();
+
+  // Element SDK
+  const defaultConfig = {
+    site_title: 'الحقيبة التدريبية للمعسكر السيبراني الصيفي للموهوبين',
+    camp_year: '2026',
+    background_color: '#0a0e1a',
+    surface_color: '#111827',
+    text_color: '#e2e8f0',
+    primary_action: '#00d4ff',
+    secondary_action: '#a855f7'
+  };
+
+  window.elementSdk.init({
+    defaultConfig,
+    onConfigChange: async (config) => {
+      const bg = config.background_color || defaultConfig.background_color;
+      const surface = config.surface_color || defaultConfig.surface_color;
+      const text = config.text_color || defaultConfig.text_color;
+      const primary = config.primary_action || defaultConfig.primary_action;
+      const secondary = config.secondary_action || defaultConfig.secondary_action;
+      const font = config.font_family || 'Tajawal';
+      const size = config.font_size || 16;
+
+      document.body.style.background = bg;
+      document.body.style.color = text;
+      document.body.style.fontFamily = `${font}, Tajawal, sans-serif`;
+      document.body.style.fontSize = size + 'px';
+
+      document.documentElement.style.setProperty('--neon-blue', primary);
+      document.documentElement.style.setProperty('--neon-purple', secondary);
+      document.documentElement.style.setProperty('--dark-bg', bg);
+      document.documentElement.style.setProperty('--card-bg', surface);
+    },
+    mapToCapabilities: (config) => ({
+      recolorables: [
+        { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+        { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+        { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+        { get: () => config.primary_action || defaultConfig.primary_action, set: (v) => { config.primary_action = v; window.elementSdk.setConfig({ primary_action: v }); } },
+        { get: () => config.secondary_action || defaultConfig.secondary_action, set: (v) => { config.secondary_action = v; window.elementSdk.setConfig({ secondary_action: v }); } }
+      ],
+      borderables: [],
+      fontEditable: { get: () => config.font_family || 'Tajawal', set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
+      fontSizeable: { get: () => config.font_size || 16, set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } }
+    }),
+    mapToEditPanelValues: (config) => new Map([
+      ['site_title', config.site_title || defaultConfig.site_title],
+      ['camp_year', config.camp_year || defaultConfig.camp_year]
+    ])
+  });
+
+  // Progress bar
+  document.body.addEventListener('scroll', () => {
+    const scrollTop = document.body.scrollTop;
+    const scrollHeight = document.body.scrollHeight - document.body.clientHeight;
+    const progress = (scrollTop / scrollHeight) * 100;
+    document.getElementById('progressBar').style.width = progress + '%';
+  });
+
+  // Mobile menu
+  document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+  });
+
+  // Accordion
+  function toggleAccordion(btn) {
+    const content = btn.nextElementSibling;
+    const icon = btn.querySelector('.accordion-icon');
+    content.classList.toggle('open');
+    icon.style.transform = content.classList.contains('open') ? 'rotate(180deg)' : '';
+  }
+
+  // Fade in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Counter animation
+  let count = 0;
+  const target = 5;
+  const counterEl = document.getElementById('counterDays');
+  const interval = setInterval(() => {
+    count++;
+    counterEl.textContent = count;
+    if (count >= target) clearInterval(interval);
+  }, 200);
+</script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f91a854b1057e8b',t:'MTc3ODMzOTcwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

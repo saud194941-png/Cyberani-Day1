@@ -173,7 +173,17 @@
       .cyber-card { border: 1px solid #ccc; background: #f9f9f9; }
     }
 
-    .scroll-smooth { scroll-behavior: smooth; }
+    html {
+  scroll-behavior: smooth;
+}
+
+.direction-ltr {
+  direction: ltr;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
   </style>
   <script>
     tailwind.config = {
@@ -922,117 +932,163 @@
     </div>
    </div>
   </section>
-  <div class="section-divider"></div><!-- Legal Protection -->
-  <section class="px-4 py-16 max-w-6xl mx-auto fade-in">
-   <div class="border border-yellow-500/30 bg-yellow-500/5 rounded-2xl p-8 text-center">
-    <div class="w-16 h-16 mx-auto rounded-full bg-yellow-500/20 flex items-center justify-center mb-4"><i data-lucide="alert-triangle" class="w-8 h-8 text-yellow-400"></i>
+  <div class="section-divider"></div>
+  
+  <!-- Legal Protection -->
+
+  <!-- Legal Protection -->
+<section class="px-4 py-16 max-w-6xl mx-auto fade-in">
+  <div class="border border-yellow-500/30 bg-yellow-500/5 rounded-2xl p-8 text-center">
+
+    <div class="w-16 h-16 mx-auto rounded-full bg-yellow-500/20 flex items-center justify-center mb-4">
+      <i data-lucide="alert-triangle" class="w-8 h-8 text-yellow-400"></i>
     </div>
-    <h3 class="text-xl font-bold text-yellow-400 mb-4">⚖️ تنبيه قانوني مهم</h3>
-    <p class="text-gray-300 text-sm max-w-3xl mx-auto leading-relaxed">جميع المعلومات المقدمة داخل هذه الحقيبة التدريبية مخصصة لأغراض تعليمية وتوعوية فقط، ويُمنع منعًا باتًا استخدام أي معرفة أو مهارة مكتسبة بشكل مخالف للأنظمة والقوانين المعمول بها في المملكة العربية السعودية والقوانين الدولية. أي استخدام غير أخلاقي أو غير قانوني يعرّض صاحبه للمساءلة القانونية.</p>
-   </div>
-  </section><!-- Footer -->
-  <footer class="border-t border-gray-800 mt-16 py-8 px-4">
-   <div class="max-w-6xl mx-auto text-center">
-    <div class="flex items-center justify-center gap-2 mb-4">
-     <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyber-blue to-cyber-purple flex items-center justify-center"><i data-lucide="shield-check" class="w-4 h-4 text-white"></i>
-     </div><span class="font-bold gradient-text">المعسكر السيبراني للموهوبين</span>
+
+    <h3 class="text-2xl font-bold text-yellow-400 mb-4">
+      تنبيه قانوني وأخلاقي
+    </h3>
+
+    <p class="text-gray-300 text-sm leading-relaxed max-w-3xl mx-auto">
+      جميع المعلومات والأنشطة المقدمة في هذه الحقيبة التعليمية تهدف للتوعية والتعليم فقط ضمن إطار الأمن السيبراني الأخلاقي.
+      يمنع استخدام أي معرفة أو مهارة مكتسبة في تنفيذ أعمال غير قانونية أو محاولات اختراق أو إضرار بالأنظمة والأفراد.
+    </p>
+
+    <div class="mt-6 text-xs text-gray-500">
+      جميع الحقوق محفوظة © المعسكر السيبراني الصيفي للموهوبين 2026
     </div>
-    <p class="text-gray-500 text-sm">جميع الحقوق محفوظة © قسم الموهوبين بتعليم جدة | تصميم وإعداد: سعود سعد العتيبي</p>
-   </div>
-  </footer>
-  <script>
-  // Initialize Lucide
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Footer -->
+<footer class="px-4 py-10 border-t border-gray-800 mt-10">
+  <div class="max-w-6xl mx-auto text-center">
+
+    <h3 class="text-lg font-bold gradient-text mb-3">
+      المعسكر السيبراني الصيفي للموهوبين
+    </h3>
+
+    <p class="text-gray-500 text-sm mb-4">
+      تعليم جدة - قسم الموهوبين
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-3 text-xs">
+
+      <span class="bg-cyber-blue/10 text-cyber-blue px-3 py-1 rounded-full">
+        سعود سعد العتيبي
+      </span>
+
+      <span class="bg-cyber-purple/10 text-cyber-purple px-3 py-1 rounded-full">
+        أ. فاطمه محمد الزبيدي
+      </span>
+
+      <span class="bg-cyber-blue/10 text-cyber-blue px-3 py-1 rounded-full">
+        أ. محمد ساطي الظاهري
+      </span>
+
+    </div>
+
+  </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+
+  // تشغيل أيقونات Lucide
   lucide.createIcons();
 
-  // Element SDK
-  const defaultConfig = {
-    site_title: 'الحقيبة التدريبية للمعسكر السيبراني الصيفي للموهوبين',
-    camp_year: '2026',
-    background_color: '#0a0e1a',
-    surface_color: '#111827',
-    text_color: '#e2e8f0',
-    primary_action: '#00d4ff',
-    secondary_action: '#a855f7'
-  };
+  // القائمة المتنقلة
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
 
-  window.elementSdk.init({
-    defaultConfig,
-    onConfigChange: async (config) => {
-      const bg = config.background_color || defaultConfig.background_color;
-      const surface = config.surface_color || defaultConfig.surface_color;
-      const text = config.text_color || defaultConfig.text_color;
-      const primary = config.primary_action || defaultConfig.primary_action;
-      const secondary = config.secondary_action || defaultConfig.secondary_action;
-      const font = config.font_family || 'Tajawal';
-      const size = config.font_size || 16;
+  if (mobileMenuBtn && mobileMenu) {
 
-      document.body.style.background = bg;
-      document.body.style.color = text;
-      document.body.style.fontFamily = `${font}, Tajawal, sans-serif`;
-      document.body.style.fontSize = size + 'px';
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
 
-      document.documentElement.style.setProperty('--neon-blue', primary);
-      document.documentElement.style.setProperty('--neon-purple', secondary);
-      document.documentElement.style.setProperty('--dark-bg', bg);
-      document.documentElement.style.setProperty('--card-bg', surface);
-    },
-    mapToCapabilities: (config) => ({
-      recolorables: [
-        { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
-        { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
-        { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
-        { get: () => config.primary_action || defaultConfig.primary_action, set: (v) => { config.primary_action = v; window.elementSdk.setConfig({ primary_action: v }); } },
-        { get: () => config.secondary_action || defaultConfig.secondary_action, set: (v) => { config.secondary_action = v; window.elementSdk.setConfig({ secondary_action: v }); } }
-      ],
-      borderables: [],
-      fontEditable: { get: () => config.font_family || 'Tajawal', set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
-      fontSizeable: { get: () => config.font_size || 16, set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } }
-    }),
-    mapToEditPanelValues: (config) => new Map([
-      ['site_title', config.site_title || defaultConfig.site_title],
-      ['camp_year', config.camp_year || defaultConfig.camp_year]
-    ])
-  });
-
-  // Progress bar
-  document.body.addEventListener('scroll', () => {
-    const scrollTop = document.body.scrollTop;
-    const scrollHeight = document.body.scrollHeight - document.body.clientHeight;
-    const progress = (scrollTop / scrollHeight) * 100;
-    document.getElementById('progressBar').style.width = progress + '%';
-  });
-
-  // Mobile menu
-  document.getElementById('mobileMenuBtn').addEventListener('click', () => {
-    document.getElementById('mobileMenu').classList.toggle('hidden');
-  });
+  }
 
   // Accordion
   function toggleAccordion(btn) {
-    const content = btn.nextElementSibling;
+
+    const content = btn.parentElement.querySelector('.accordion-content');
     const icon = btn.querySelector('.accordion-icon');
-    content.classList.toggle('open');
-    icon.style.transform = content.classList.contains('open') ? 'rotate(180deg)' : '';
+
+    if (content) {
+      content.classList.toggle('open');
+    }
+
+    if (icon) {
+      icon.classList.toggle('rotate-180');
+    }
+
   }
 
-  // Fade in on scroll
+  // Progress Bar
+  window.addEventListener('scroll', () => {
+
+    const scrollTop = document.documentElement.scrollTop;
+
+    const scrollHeight =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+
+    const progress = (scrollTop / scrollHeight) * 100;
+
+    const progressBar = document.getElementById('progressBar');
+
+    if (progressBar) {
+      progressBar.style.width = progress + '%';
+    }
+
+  });
+
+  // Fade In Animation
+  const fadeElements = document.querySelectorAll('.fade-in');
+
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
+
+    entries.forEach((entry) => {
+
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+
     });
-  }, { threshold: 0.1 });
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  }, {
+    threshold: 0.1
+  });
 
-  // Counter animation
-  let count = 0;
-  const target = 5;
-  const counterEl = document.getElementById('counterDays');
-  const interval = setInterval(() => {
-    count++;
-    counterEl.textContent = count;
-    if (count >= target) clearInterval(interval);
-  }, 200);
+  fadeElements.forEach((el) => {
+    observer.observe(el);
+  });
+
+  // عداد الأيام
+  const counterDays = document.getElementById('counterDays');
+
+  if (counterDays) {
+
+    let current = 0;
+
+    const interval = setInterval(() => {
+
+      current++;
+
+      counterDays.textContent = current;
+
+      if (current >= 1) {
+        clearInterval(interval);
+      }
+
+    }, 500);
+
+  }
+
 </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f91a854b1057e8b',t:'MTc3ODMzOTcwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+
+</body>
 </html>
